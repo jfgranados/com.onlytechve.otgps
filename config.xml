@@ -14,13 +14,13 @@
   </description>
 
   <author href="http://www.OnlyTech.com.ve" email="support@onlytech.com.ve">
-      Hardeep Shoker
+      OnlyTech C.A. 
   </author>
    <plugin name="com.phonegap.plugins.sms"  /> 
 
    <preference name="phonegap-version" value="v5.1.1" />
 
 
-   <preference name="phonegap-version" value="3.0.0" />
+   
 </widget>
 
