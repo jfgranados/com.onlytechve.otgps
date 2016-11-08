@@ -19,7 +19,7 @@
    <plugin name="com.phonegap.plugins.sms"  /> 
 
    <preference name="phonegap-version" value="v5.1.1" />
-</widget>
+
 
    <preference name="phonegap-version" value="3.0.0" />
 </widget>
