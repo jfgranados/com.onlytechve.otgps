@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns   = "http://www.w3.org/ns/widgets"
-    xmlns:gap   = "http://phonegap.com/ns/1.0"
+   
     id          = "com.onlytechve.otgps"
     versionCode = "10"
     version     = "1.0.0" >
@@ -16,7 +16,7 @@
   <author href="http://www.OnlyTech.com.ve" email="support@onlytech.com.ve">
       OnlyTech & Wilferson Avila
   </author>
-  
+
    <plugin name="com.phonegap.plugins.sms" spec="1.0.5" /> 
    <preference name="phonegap-version" value="3.0.0" />
 </widget
