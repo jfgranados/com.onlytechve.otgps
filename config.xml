@@ -18,7 +18,7 @@
   </author>
    <plugin name="com.phonegap.plugins.sms"  /> 
 
-   <preference name="phonegap-version" value="v5.1.1" />
+   <preference name="phonegap-version" value="cli-5.1.1" />
 
 
    
