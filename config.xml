@@ -14,8 +14,9 @@
   </description>
 
   <author href="http://www.OnlyTech.com.ve" email="support@onlytech.com.ve">
-      Hardeep Shoker
+      OnlyTech & Wilferson Avila
   </author>
+  
    <plugin name="com.phonegap.plugins.sms" spec="1.0.5" /> 
    <preference name="phonegap-version" value="3.0.0" />
 </widget
