@@ -17,7 +17,7 @@
       OnlyTech C.A. 
   </author>
    <gap:plugin name="cordova-plugin-sms" source="npm" />
-
+   <gap:plugin name="cordova-plugin-sqlite" source="npm" />
    <preference name="phonegap-version" value="cli-5.1.1" />
 
 
