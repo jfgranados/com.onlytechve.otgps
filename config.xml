@@ -17,5 +17,10 @@
       Hardeep Shoker
   </author>
    <plugin name="com.phonegap.plugins.sms"  /> 
+<<<<<<< HEAD
    <preference name="phonegap-version" value="v5.1.1" />
 </widget>
+=======
+   <preference name="phonegap-version" value="3.0.0" />
+</widget>
+>>>>>>> aa5924ba9e67359ce81d92fbbc3ce662ac55161a
