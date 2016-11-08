@@ -16,6 +16,6 @@
   <author href="http://www.OnlyTech.com.ve" email="support@onlytech.com.ve">
       Hardeep Shoker
   </author>
-   <plugin name="com.phonegap.plugins.sms" spec="1.0.5" /> 
+   <plugin name="com.phonegap.plugins.sms"  /> 
    <preference name="phonegap-version" value="3.0.0" />
 </widget>
