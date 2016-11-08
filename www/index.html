@@ -14,16 +14,10 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-        <script type="text/javascript">
-           var db = null;
+        <script src="js/main.js"type="text/javascript">
+           
 
-            document.addEventListener("deviceready", function(){
-            db = window.sqlitePlugin.openDatabase({name: "com.onlytechve.otgps.db"});
-            db.transaction(function(tx) {
-            tx.executeSql("CREATE TABLE IF NOT EXISTS config (name text primary key, data text)");
-            }, function(err){
-                    alert("Error inicializando la base de datos.");
-                        });
+
 }, false);
         </script>
     </body>
