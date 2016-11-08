@@ -7,3 +7,5 @@ var db = null;
             }, function(err){
                     alert("Error inicializando la base de datos.");
                         });
+                        
+    }, false);                        
