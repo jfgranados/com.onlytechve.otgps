@@ -8,7 +8,7 @@ var deviceIMEI=null;
 document.addEventListener("deviceready",main, false);              
 $.mobile.defaultPageTransition='slideup'; 
 
-function doHtmlRequest()
+function main()
 {
 $.ajax({
     url : "/mysite/file.html",
