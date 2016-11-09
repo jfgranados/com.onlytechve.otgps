@@ -7,3 +7,13 @@ var deviceIMEI=null;
 
 document.addEventListener("deviceready",main, false);              
 $.mobile.defaultPageTransition='slideup'; 
+
+function doHtmlRequest()
+{
+$.ajax({
+    url : "/mysite/file.html",
+    success : function(result){
+        alert(result);
+    }
+});
+}
