@@ -12,7 +12,7 @@ $.mobile.defaultPageTransition='slideup';
 
 function main()
 {
-   
+   var db = window.sqlitePlugin.openDatabase({name: "com.onlytechve.GPS.db"});
 
 }
 
