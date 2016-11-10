@@ -18,7 +18,7 @@
   </author>
     <plugin name="cordova-plugin-sms" spec="1.0.5" />
     <plugin name="cordova-plugin-sqlite" spec="1.0.3" />
-    <plugin name="cordova-plugin-whitelist">
+    <plugin name="cordova-plugin-whitelist"/>
    
     
    <preference name="phonegap-version" value="cli-5.1.1" />
