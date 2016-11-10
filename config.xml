@@ -12,12 +12,13 @@
   <description>
     Aplicacion para el manejo de dispositivos de rastreo GPS mediante mensajes de texto.
   </description>
-  <access origin="*" />
+
   <author href="http://www.OnlyTech.com.ve" email="support@onlytech.com.ve">
       OnlyTech C.A. 
   </author>
     <plugin name="cordova-plugin-sms" spec="1.0.5" />
     <plugin name="cordova-plugin-sqlite" spec="1.0.3" />
+    <plugin name="cordova-plugin-whitelist">
    
     
    <preference name="phonegap-version" value="cli-5.1.1" />

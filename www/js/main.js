@@ -88,11 +88,7 @@ function register()
 function doMenu(val)
 {
     var smsstring=null;
-var map = new GMaps({
-    div: '#map',
-    lat: -12.043333,
-    lng: -77.028333
-});
+
     switch (val) {
         case 0:
             smsstring="stop"+userpass;
