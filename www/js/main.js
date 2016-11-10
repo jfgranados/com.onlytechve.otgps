@@ -7,6 +7,8 @@ var deviceIMEI=null;
 var numero_de_gps=null;
 var serial_de_acti=null;
 var database_ready=false;
+var userpass="123456";
+var traccar_enabled=false;
 document.addEventListener("deviceready",main, false);              
 $.mobile.defaultPageTransition='slide'; 
 
@@ -25,13 +27,14 @@ function main()
                        console.log("no se pudo crear la tabla configuracion");
                        });});
       /* Leemos el contenido de la tabla*/ 
-      myDB.transaction(function(transaction) {
+      db.transaction(function(transaction) {
       var executeQuery = "SELECT * FROM config";
       transaction.executeSql(executeQuery, [ ],
       function(tx, result) {
                       if (result.rows.length>0){
                             /* La aplicacion ya ha sido previamente configurada  */
-                            
+                            read_configuration(result);
+                            $(":mobile-pagecontainer").pagecontainer( "change", $("#welcome" ));
                             }else
                             {
                              /** La aplicacion no ha sido configurada previamente ir a la pagina de configuracion */
@@ -48,6 +51,9 @@ function main()
 
 }
 
+function read_configuration(rx)
+{
+}
 
 function register()
 {
@@ -77,4 +83,36 @@ function register()
     }});
         }
         else{alert("verifique los datos ingresados");}
+}
+function doMenu(val)
+{
+    var smsstring=null;
+
+    switch (val) {
+        case 0:
+            smsstring="stop"+userpass;
+            send_command(smstring);
+            break;
+        case 1:
+            smsstring="start"+userpass;
+            break;
+        case 2:
+            if(!traccar_enabled)
+            {
+                alert("Debe configurar el servicio web antes de usar esta opcion")
+            }
+            break; 
+        case 3:
+            
+            break;
+        case 4:
+            
+            break;
+        case 5:
+            
+            break;        
+    
+        default:
+            break;
+    }
 }
