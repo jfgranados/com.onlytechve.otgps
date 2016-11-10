@@ -104,7 +104,8 @@ var map = new GMaps({
         case 2:
             if(!traccar_enabled)
             {
-                alert("Debe configurar el servicio web antes de usar esta opcion")
+                alert("Debe configurar el servicio web antes de usar esta opcion");
+                $(":mobile-pagecontainer").pagecontainer("change","#showGPS");
             }
             break; 
         case 3:
