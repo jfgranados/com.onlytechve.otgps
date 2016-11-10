@@ -8,7 +8,7 @@ var numero_de_gps=null;
 var serial_de_acti=null;
 var database_ready=false;
 document.addEventListener("deviceready",main, false);              
-$.mobile.defaultPageTransition='slideup'; 
+$.mobile.defaultPageTransition='slide'; 
 
 function main()
 {
