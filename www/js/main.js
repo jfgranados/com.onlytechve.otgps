@@ -13,6 +13,38 @@ $.mobile.defaultPageTransition='slide';
 function main()
 {
    var db = window.sqlitePlugin.openDatabase({name: "com.onlytechve.GPS.db"});
+   if  (db!=null)
+   {
+       /* creamos la tabla configuracion si no existe */
+       db.transaction(function(transaction) {
+       var executeQuery = "CREATE TABLE IF NOT EXIST config id integer primary key,title text,data text";
+       transaction.executeSql(executeQuery, [ ],
+       function(tx, result) {
+                       console.log("Creada la tabla configuracion");                           },
+                   function(error){
+                       console.log("no se pudo crear la tabla configuracion");
+                       });});
+      /* Leemos el contenido de la tabla*/ 
+      myDB.transaction(function(transaction) {
+      var executeQuery = "SELECT * FROM config";
+      transaction.executeSql(executeQuery, [ ],
+      function(tx, result) {
+                      if (result.rows.length>0){
+                            /* La aplicacion ya ha sido previamente configurada  */
+                            
+                            }else
+                            {
+                             /** La aplicacion no ha sido configurada previamente ir a la pagina de configuracion */
+
+                            }
+                          },
+                  function(error){
+                      // Error
+                      });});                
+       
+       
+        
+    }
 
 }
 
