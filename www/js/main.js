@@ -11,7 +11,7 @@ var userpass="123456";
 var traccar_enabled=false;
 document.addEventListener("deviceready",main, false);              
 $.mobile.defaultPageTransition='slide'; 
-
+$.support.cors = true;
 function main()
 {
    var db = window.sqlitePlugin.openDatabase({name: "com.onlytechve.GPS.db"});
