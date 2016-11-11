@@ -13,7 +13,36 @@ var traccar_enabled=false;
 document.addEventListener("deviceready",main, false);              
 $.mobile.defaultPageTransition='slide'; 
 $.support.cors = true;
+$(document).ready(function (){
 
+/* Seleccionar la pagina correcta a trabajar*/
+
+   /*-- Coordova finalmente cargo , dispositivo listo para usarse*/ 
+    numero_de_gps=window.localStorage.getItem("numero_de_gps");
+    if(numero_de_gps.length>5)
+    {
+        /*-- Existe un gps registrado, cargamos la configuracion y damos el control a la pagina principal**/
+        isActivated=true;
+        serial_de_acti=window.localStorage.getItem("serial_de_acti");
+        userpass=window.localStorage.getItem("userpass");
+        traccar_enabled=(window.localStorage.getItem("traccar_enabled")=="true");
+            if(traccar_enabled)
+                {
+                    traccar_username=window.localStorage.getItem("traccar_username");
+                    traccar_password=window.localStorage.getItem("traccar_password");
+                    deviceIMEI=window.localStorage.getItem("deviceIMEI");
+
+                }
+        /*Cargados los datos de configuracion en las variables locales, listas para usarsem 
+        cedemos el control al formulario principal*/
+         $(":mobile-pagecontainer").pagecontainer( "change", $("#welcome" ));
+         return true;
+    } 
+    /* si no existe el registro, avanzamos directo a la pagina de registro*/
+    $(":mobile-pagecontainer").pagecontainer( "change", $("#firstime" ));
+    return false; 
+    
+});
 function main()
 {
     /*-- Coordova finalmente cargo , dispositivo listo para usarse*/ 
@@ -35,10 +64,11 @@ function main()
         /*Cargados los datos de configuracion en las variables locales, listas para usarsem 
         cedemos el control al formulario principal*/
          $(":mobile-pagecontainer").pagecontainer( "change", $("#welcome" ));
+         return true;
     } 
     /* si no existe el registro, avanzamos directo a la pagina de registro*/
     $(":mobile-pagecontainer").pagecontainer( "change", $("#firstime" )); 
-    
+    return false;
 }
 
 
