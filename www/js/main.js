@@ -16,7 +16,9 @@ $.support.cors = true;
 $(document).ready(function (){
 
 /* Seleccionar la pagina correcta a trabajar*/
-
+var ua = navigator.userAgent.toLowerCase();
+var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+if (!isAndroid){
    /*-- Coordova finalmente cargo , dispositivo listo para usarse*/ 
     numero_de_gps=window.localStorage.getItem("numero_de_gps");
     if(numero_de_gps.length>5)
@@ -41,7 +43,7 @@ $(document).ready(function (){
     /* si no existe el registro, avanzamos directo a la pagina de registro*/
     $(":mobile-pagecontainer").pagecontainer( "change", $("#firstime" ));
     return false; 
-    
+}   
 });
 function main()
 {
