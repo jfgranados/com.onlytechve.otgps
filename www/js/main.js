@@ -1,5 +1,6 @@
 var db = null;
-var username=null;
+var traccar_username=null;
+var traccar_password=null;
 var useruniquekey=null;
 var isActivated=false;
 var coordinates=null;
@@ -15,46 +16,32 @@ $.support.cors = true;
 
 function main()
 {
-   var db = window.sqlitePlugin.openDatabase({name: "com.onlytechve.GPS.db"});
-   if  (db!=null)
-   {
-       /* creamos la tabla configuracion si no existe */
-       db.transaction(function(transaction) {
-       var executeQuery = "CREATE TABLE IF NOT EXIST config id integer primary key,title text,data text";
-       transaction.executeSql(executeQuery, [ ],
-       function(tx, result) {
-                       console.log("Creada la tabla configuracion");                           },
-                   function(error){
-                       console.log("no se pudo crear la tabla configuracion");
-                       });});
-      /* Leemos el contenido de la tabla*/ 
-      db.transaction(function(transaction) {
-      var executeQuery = "SELECT * FROM config";
-      transaction.executeSql(executeQuery, [ ],
-      function(tx, result) {
-                      if (result.rows.length>0){
-                            /* La aplicacion ya ha sido previamente configurada  */
-                            read_configuration(result);
-                            $(":mobile-pagecontainer").pagecontainer( "change", $("#welcome" ));
-                            }else
-                            {
-                             /** La aplicacion no ha sido configurada previamente ir a la pagina de configuracion */
+    /*-- Coordova finalmente cargo , dispositivo listo para usarse*/ 
+    numero_de_gps=window.localStorage.getItem("numero_de_gps");
+    if(numero_de_gps.length>5)
+    {
+        /*-- Existe un gps registrado, cargamos la configuracion y damos el control a la pagina principal**/
+        isActivated=true;
+        serial_de_acti=window.localStorage.getItem("serial_de_acti");
+        userpass=window.localStorage.getItem("userpass");
+        traccar_enabled=(window.localStorage.getItem("traccar_enabled")=="true");
+            if(traccar_enabled)
+                {
+                    traccar_username=window.localStorage.getItem("traccar_username");
+                    traccar_password=window.localStorage.getItem("traccar_password");
+                    deviceIMEI=window.localStorage.getItem("deviceIMEI");
 
-                            }
-                          },
-                  function(error){
-                      // Error
-                      });});                
-       
-       
-        
-    }
-
+                }
+        /*Cargados los datos de configuracion en las variables locales, listas para usarsem 
+        cedemos el control al formulario principal*/
+         $(":mobile-pagecontainer").pagecontainer( "change", $("#welcome" ));
+    } 
+    /* si no existe el registro, avanzamos directo a la pagina de registro*/
+    $(":mobile-pagecontainer").pagecontainer( "change", $("#firstime" )); 
+    
 }
 
-function read_configuration(rx)
-{
-}
+
 
 function register()
 {
@@ -68,6 +55,9 @@ function register()
             
                     switch (result){
                         case "0":
+                           window.localStorage.setItem("numero_de_gps",numero_de_gps);
+                           window.localStorage.setItem("serial_de_acti",serial_de_acti);
+                           window.localStorage.setItem("isActivated","true") ;                       
                             $(":mobile-pagecontainer").pagecontainer( "change", $("#welcome" ));
                             break;
                         case "1":
