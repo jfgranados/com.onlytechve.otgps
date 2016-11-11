@@ -85,11 +85,11 @@ function doMenu(val)
     switch (val) {
         case 0:
             smsstring="stop"+userpass;
-            send_command(smsstring);
+             if(send_command(smsstring)){alert("sms enviado")};
             break;
         case 1:
             smsstring="start"+userpass;
-            send_command(smsstring);
+            if(send_command(smsstring)){alert("sms enviado")};
             break;
         case 2:
             if(!traccar_enabled)
