@@ -57,14 +57,17 @@ function register()
                         case "0":
                            window.localStorage.setItem("numero_de_gps",numero_de_gps);
                            window.localStorage.setItem("serial_de_acti",serial_de_acti);
-                           window.localStorage.setItem("isActivated","true") ;                       
+                           window.localStorage.setItem("isActivated","true") ;     
+                           userpass=prompt("Ingrese la clave del dispositivo GPS, si la desconoce deje este campo en blanco");
+                           if (userpass==""){userpass="123456"};
+                           window.localStorage.setItem("userpass",userpass);                  
                             $(":mobile-pagecontainer").pagecontainer( "change", $("#welcome" ));
                             break;
                         case "1":
                             alert("No se pudo conectar con la base de datos");
                             break;
                         case "2":
-                            alert("la clave introducida es invalida");
+                            alert("la clave introducida es inválida");
                             break;
                         case "3":
                             alert("Ya existe un dispositivo registrado con esa clave");
@@ -73,7 +76,7 @@ function register()
 
     }});
         }
-        else{alert("verifique los datos ingresados");}
+        else{alert("Verifique los datos ingresados. TIP: Ingrese solo némeros en el némero de teléfono");}
 }
 function doMenu(val)
 {
@@ -82,16 +85,18 @@ function doMenu(val)
     switch (val) {
         case 0:
             smsstring="stop"+userpass;
-            send_command(smstring);
+            send_command(smsstring);
             break;
         case 1:
             smsstring="start"+userpass;
+            send_command(smsstring);
             break;
         case 2:
             if(!traccar_enabled)
             {
                 alert("Debe configurar el servicio web antes de usar esta opcion");
                 $(":mobile-pagecontainer").pagecontainer("change","#showGPS");
+                window.dispatchEvent(new Event('resize'));
             }
             break; 
         case 3:
@@ -108,5 +113,22 @@ function doMenu(val)
             break;
     }
 }
+function on_sms_arrive_func()
+{
 
+
+}
+function send_command( sms)
+{
+    sendSMS(numero_de_gps,sms,function(){
+            alert("el comando se ha enviado exitosamente");
+            return true;
+    },function(){
+            alert("no se pudo enviar el mensaje");
+            return false;
+    });
+}
+function callback_recibir_sms()
+{
     
+}    
