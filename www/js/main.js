@@ -139,7 +139,18 @@ function doMenu(val)
             break;
         case 5:
             
-            break;        
+            break;  
+        case 6:
+            if (navigator.app) {
+                navigator.app.exitApp();
+                }
+                else if (navigator.device) {
+                    navigator.device.exitApp();
+                }
+            else {
+                    window.close();
+                }
+            break;
     
         default:
             break;

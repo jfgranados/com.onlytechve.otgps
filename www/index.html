@@ -21,7 +21,7 @@
             </div>
             <div data-role="main" class="ui-content">
                 <p>
-                    <input type="text" id="inumber" placeholder="Ingrese el numero telefono del GPS"/>
+                    <input type="number" id="inumber" placeholder="Ingrese el numero telefono del GPS"/>
                     <input type="text" id="ikey" placeholder="Ingrese el codigo de activacion"/>
                     <a  href="javascript:register()" style="text-decoration:none"><button>Registrar y activar</button></a>
 
@@ -42,19 +42,56 @@
                     <li><a  href="javascript:doMenu(4)"  style="text-decoration:none">Desactivar perimetro</a></li>
                     <li><a  href="javascript:doMenu(5)"  style="text-decoration:none">Recorrido historico</a></li>
                     <br>
-                    <li><a  href="javascript:doMenu(6)"  style="text-decoration:none">Avanzado</a></li>
-                    <li><a  href="javascript:doMenu(7)"  style="text-decoration:none">Configurar App Web</a></li>
-                    <li><a  href="javascript:doMenu(8)"  style="text-decoration:none">Desactivar apagad</a></li>
-                    <li><a  href="#showGPS"  style="text-decoration:none">Salir</a></li>
+                    <li><a  href="#config-page"  style="text-decoration:none">Avanzado</a></li>
+                    <li><a  href="#config-app"  style="text-decoration:none">Configurar App Web</a></li>
+                    <br>
+                    <li><a  href="javascript:doMenu(6)"  style="text-decoration:none">Salir</a></li>
                 </ul>
             </div>
         </div>
+     
 
 <!--Pagina de reconfiguracion-->
+        <div data-role="page" id="config-page">
+            <div data-role="header">
+                <h1> Configuracion</h1>
+            </div>
+
+            <div data-role="main" class="ui-content" id="config-menu">
+                <ul data-role="listview">
+                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none"> </a></li>
+                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none"> </a></li>
+                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none"> </a></li>
+                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none"> </a></li>
+                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none"> </a></li>
+                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none"> </a></li>
+                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none"> </a></li>
+                </ul>
+                <br>
+                <a href="#welcome"><button class="ui-btn">Volver</button></a>
+             </div>     
+        </div>
+ <!-- pagina de configuracion de Traccar -->
+
+        <div data-role="page" id="config-app">
+            <div data-role="header">
+                <h1>Carabobo Trackers Traccar </h1>
+            </div>
+            <div data-role="main" class "ui-content">
+                <input type="number" id="textIMEI" placeholder="Ingrese el IMEI del GPS"/>
+                <input type="text" id="textUsrName" placeholder="Ingrese el nombre de usario"/>
+                <input type="password" id="txtPass" placeholder="Escriba su contraseña"/>
+                <a href="javascript:doConfigMenu(0)"><button class="ui-btn">Conectar</button></a>
+                <a href="#welcome"><button class="ui-btn">Volver</button></a>
+            </div>
+        </div>    
+
+           
 
 
 <!--Pagina para mostrar el GPS-->        
         <div data-role="page" id="showGPS">
+             <div data-role="main" class="ui-content">
              <div id="map" style="width:100%; height:400px;"></div>
              <script>
                 function initMap() {
@@ -67,13 +104,14 @@
       }
 
     </script>
+       <a href="#welcome"><button class="ui-btn">Volver</button></a>
+             </div>
           
              
 
         </div>
 
 
-        <!-- put jQuery mobile pages here -->
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="sms.js"></script>
