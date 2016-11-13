@@ -138,7 +138,8 @@ function doMenu(val)
             
             break;
         case 5:
-            
+            smstring="move"+userpass+" 0200";
+            if(send_command(smsstring)){alert("sms enviado")};
             break;  
         case 6:
             if (navigator.app) {
