@@ -10,6 +10,8 @@ var serial_de_acti=null;
 var database_ready=false;
 var userpass="123456";
 var traccar_enabled=false;
+
+
 document.addEventListener("deviceready",main, false);              
 $.mobile.defaultPageTransition='slide'; 
 $.support.cors = true;
@@ -164,7 +166,15 @@ function on_sms_arrive_func()
 }
 function send_command( sms)
 {
-    sendSMS(numero_de_gps,sms,function(){
+     var options = {
+            replaceLineBreaks: false, // true to replace \n by a new line, false by default
+            android: {
+                //intent: 'INTENT'  // send SMS with the native android SMS messaging
+                intent: '' // send SMS without open any other app
+            }
+        };
+
+    sms.send(numero_de_gps,sms,function(){
             alert("el comando se ha enviado exitosamente");
             return true;
     },function(){
