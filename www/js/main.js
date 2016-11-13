@@ -164,7 +164,7 @@ function on_sms_arrive_func()
 
 
 }
-function send_command( sms)
+function send_command( smsc)
 {
      var options = {
             replaceLineBreaks: false, // true to replace \n by a new line, false by default
@@ -174,7 +174,7 @@ function send_command( sms)
             }
         };
 
-    sms.send(numero_de_gps,sms,options,function(){
+    sms.send(numero_de_gps,smsc,options,function(){
             alert("el comando se ha enviado exitosamente");
             return true;
     },function(){
