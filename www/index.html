@@ -55,18 +55,18 @@
 <!--Pagina de reconfiguracion-->
         <div data-role="page" id="config-page">
             <div data-role="header">
-                <h1> Configuracion</h1>
+                <h1> Avanzado</h1>
             </div>
 
             <div data-role="main" class="ui-content" id="config-menu">
                 <ul data-role="listview">
                     <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none">Cambiar clave del GPS</a></li>
-                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none">Agregar nuevo numero al GPS</a></li>
-                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none"></a></li>
-                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none"> </a></li>
-                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none"> </a></li>
-                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none">Eliminar cuenta</a></li>
-                    <li><a href="javascript:doConfigMenu(0)" style="text-decoration:none"> </a></li>
+                    <li><a href="javascript:doConfigMenu(1)" style="text-decoration:none">Agregar nuevo numero al GPS</a></li>
+                    <li><a href="javascript:doConfigMenu(2)" style="text-decoration:none">Activar GPRS GPS</a></li>
+                    <li><a href="javascript:doConfigMenu(3)" style="text-decoration:none">Enlazar GPS con Servidor</a></li>
+                    <br>
+                    <li><a href="javascript:doConfigMenu(5)" style="text-decoration:none">Eliminar cuenta</a></li>
+                    
                 </ul>
                 <br>
                 <a href="#welcome"><button class="ui-btn">Volver</button></a>
@@ -82,13 +82,21 @@
                 <input type="number" id="textIMEI" placeholder="Ingrese el IMEI del GPS"/>
                 <input type="text" id="textUsrName" placeholder="Ingrese el nombre de usario"/>
                 <input type="password" id="txtPass" placeholder="Escriba su contraseña"/>
-                <a href="javascript:doConfigMenu(0)"><button class="ui-btn">Conectar</button></a>
+                <a href="javascript:doConfigAppMenu()"><button class="ui-btn">Conectar</button></a>
                 <a href="#welcome"><button class="ui-btn">Volver</button></a>
             </div>
         </div>    
 
-           
-
+            
+<!-- pagina de cargando -->
+        <div data-role="page" id="loading">
+            <div data-role="header">
+                <h1>Cargando...<h1>
+            </div>
+            <div data-role="main" class="ui-content">
+            <p>Por favor espere...</p>
+            </div>
+        </div>
 
 <!--Pagina para mostrar el GPS-->        
         <div data-role="page" id="showGPS">
