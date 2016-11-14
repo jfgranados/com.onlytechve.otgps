@@ -174,7 +174,7 @@ function send_command( smsc)
             }
         };
 
-    sms.send(numero_de_gps,smsc,options,function(){
+   smsplugin.send(numero_de_gps,options,function(){
             alert("el comando se ha enviado exitosamente");
             return true;
     },function(){
