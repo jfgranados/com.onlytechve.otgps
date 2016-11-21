@@ -16,7 +16,7 @@
   <author href="http://www.OnlyTech.com.ve" email="support@onlytech.com.ve">
       OnlyTech C.A. 
   </author>
-    <plugin name="info.asankan.phonegap.smsplugin" spec="0.1.0" source="pgb" />
+    <plugin name="cordova-sms-plugin" />
     <plugin name="cordova-plugin-sqlite" spec="1.0.3" />
     <plugin name="cordova-plugin-whitelist"/>
    

@@ -320,8 +320,7 @@ function doConfigMenu(command)
                 window.localStorage.clear();
                 alert("datos eliminados");
                $(":mobile-pagecontainer").pagecontainer( "change", $("#firstime" ));
-
-            }
+                        }
         default:
             break;
     }
