@@ -203,7 +203,7 @@ function on_sms_arrive_func()
 function send_command( smsc)
 {
 
-   smsplugin.send(numero_de_gps,smsc,function(){
+   sendSMS(numero_de_gps,smsc,function(){
             alert("el comando se ha enviado exitosamente");
             return true;
     },function(){
