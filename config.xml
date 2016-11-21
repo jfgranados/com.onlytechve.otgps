@@ -16,7 +16,7 @@
   <author href="http://www.OnlyTech.com.ve" email="support@onlytech.com.ve">
       OnlyTech C.A. 
   </author>
-    <plugin name="cordova-sms-plugin" spec="0.1.11"/>
+    <plugin name="cordova-plugin-sms" />
     <plugin name="cordova-plugin-sqlite" spec="1.0.3" />
     <plugin name="cordova-plugin-whitelist"/>
    
