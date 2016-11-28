@@ -15,6 +15,7 @@ var traccar_enabled=false;
 var traccar_session=null;
 var smsplugin=null;
 var map;
+var traccar_devices=null;
 function initMap()
 {
      map = new google.maps.Map(document.getElementById('map'), {
@@ -185,7 +186,9 @@ function doMenu(val)
                 window.dispatchEvent(new Event('resize'));
                 
             }else{
-
+                doTraccarPage();
+                $(":mobile-pagecontainer").pagecontainer("change","#showGPS");
+                window.dispatchEvent(new Event('resize'));
             }
             break; 
         case 5:
@@ -283,19 +286,22 @@ function doConfigAppMenu()
 
 }
 
-function traccar_get_pos(command)
+function traccar_get_devices_list(command)
 {
-          $.ajax({
+    
+    $.ajax({
     type: 'get',
     url: traccar_server+'/api/devices/',
     headers: {
         "Authorization": "Basic " + btoa(traccar_username + ":" + traccar_password)
     },
     success: function (response) {
-        return response;
+        console.log(response);
+        traccar_devices=response;
+        return traccar_devices;
     }
 });
-return null
+
 }
 function doConfigMenu(command)
 {
@@ -357,5 +363,22 @@ function doConfigMenu(command)
             break;
     }
 
+
+}
+function doTraccarPage()
+{
+
+ var listdevices=traccar_get_devices_list();
+ var divmapbotones=document.getElementById("map-botones");
+
+
+  traccar_devices.forEach(function(element,index) {
+      if (null==document.getElementById(element.name+"-btn"))
+      {
+          divmapbotones.innerHTML=divmapbotones.innerHTML+"<a href='javascript:doGpsSelector("+element.name+ ")'><button id=" +element.name+"-btn" +">"+element.name+"</button></a>";
+
+      }
+
+  });
 
 }
