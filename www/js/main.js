@@ -12,8 +12,17 @@ var serial_de_acti=null;
 var database_ready=false;
 var userpass="123456";
 var traccar_enabled=false;
+var traccar_session=null;
 var smsplugin=null;
-
+var map;
+function initMap()
+{
+     map = new google.maps.Map(document.getElementById('map'), {
+                 center: {lat: -34.397, lng: 150.644},
+                 scrollwheel: false,
+                 zoom: 8
+        });
+}
 document.addEventListener("deviceready",main, false);   
 document.addEventListener("backbutton", function(e){
     if($.mobile.activePage.is('#welcome')){
@@ -45,6 +54,9 @@ $(document).ready(function ()
     var ua = navigator.userAgent.toLowerCase();
     var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
     if (!isAndroid){
+                // Create a map object and specify the DOM element for display.
+                
+      
    /*-- Coordova finalmente cargo , dispositivo listo para usarse*/ 
     numero_de_gps=window.localStorage.getItem("numero_de_gps");
     if(numero_de_gps.length>5)
@@ -76,6 +88,13 @@ function main()
     /*-- Coordova finalmente cargo , dispositivo listo para usarse*/ 
     /*-- activar el plugin de SMS --*/
 
+                // Create a map object and specify the DOM element for display.
+                 map = new google.maps.Map(document.getElementById('map'), {
+                 center: {lat: -34.397, lng: 150.644},
+                 scrollwheel: false,
+                 zoom: 8
+        });
+  
     smsplugin = cordova.require("info.asankan.phonegap.smsplugin.smsplugin");
     if (smsplugin==null){
         alert("Error la aplicacion se cerrara");
@@ -158,11 +177,12 @@ function doMenu(val)
             if(send_command(smsstring)){alert("sms enviado")};
             break;
         case 2:
-            if(!traccar_enabled)
+            if(!traccar_enabled=="true")
             {
                 alert("Debe configurar el servicio web antes de usar esta opcion");
                 $(":mobile-pagecontainer").pagecontainer("change","#showGPS");
                 window.dispatchEvent(new Event('resize'));
+                
             }else{
 
             }
@@ -218,20 +238,21 @@ function callback_recibir_sms()
 function doConfigAppMenu()
 {
     /**Menu de configuracion de la appweb */
-    traccar_username=document.getElementById("textUsrName");
-    traccar_password=document.getElementById("textPass");
-    deviceIMEI=document.getElementById("textIMEI");
-     $.ajax(
+    traccar_username=document.getElementById("textUsrName").value;
+    traccar_password=document.getElementById("textPass").value;
+    deviceIMEI=document.getElementById("textIMEI").value;
+   
+       $.ajax(
   {
       async:false,
       cache:false,
       dataType:"json",
-      type: "POST",
-       contentType: "application/json",  
+      type: "POST",  
       url: traccar_server+"/api/session",
-      data:JSON.stringify({email:traccar_username,password:traccar_password}),
+      data:{email:traccar_username,password:traccar_password},
       success: function(res){
-          result=JSON.parse(res);
+          result=res;
+          traccar_session=res;
           if (result.id!=null){
                         traccar_userID=result.id;
                         window.localStorage.setItem("traccar_username",traccar_username);

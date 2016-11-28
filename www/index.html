@@ -78,10 +78,10 @@
             <div data-role="header">
                 <h1>Carabobo Trackers Traccar </h1>
             </div>
-            <div data-role="main" class "ui-content">
+            <div data-role="main" class ="ui-content">
                 <input type="number" id="textIMEI" placeholder="Ingrese el IMEI del GPS"/>
                 <input type="text" id="textUsrName" placeholder="Ingrese el nombre de usario"/>
-                <input type="password" id="txtPass" placeholder="Escriba su contraseña"/>
+                <input type="password" id="textPass" placeholder="Escriba su contraseña"/>
                 <a href="javascript:doConfigAppMenu()"><button class="ui-btn">Conectar</button></a>
                 <a href="#welcome"><button class="ui-btn">Volver</button></a>
             </div>
@@ -91,7 +91,7 @@
 <!-- pagina de cargando -->
         <div data-role="page" id="loading">
             <div data-role="header">
-                <h1>Cargando...<h1>
+                <h1>Cargando...</h1>
             </div>
             <div data-role="main" class="ui-content">
             <p>Por favor espere...</p>
@@ -102,17 +102,7 @@
         <div data-role="page" id="showGPS">
              <div data-role="main" class="ui-content">
              <div id="map" style="width:100%; height:400px;"></div>
-             <script>
-                function initMap() {
-                // Create a map object and specify the DOM element for display.
-                 var map = new google.maps.Map(document.getElementById('map'), {
-                 center: {lat: -34.397, lng: 150.644},
-                 scrollwheel: false,
-                 zoom: 8
-        });
-      }
-
-    </script>
+     
        <a href="#welcome"><button class="ui-btn">Volver</button></a>
              </div>
           
@@ -123,7 +113,7 @@
 
 
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src=""
+        
          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8ZyCJHhES7hFLC3_RBqht5YkatKGn_mI&callback=initMap" async defer></script>
         <script src="js/jquery-2.1.4.min.js"></script>
         <script>
