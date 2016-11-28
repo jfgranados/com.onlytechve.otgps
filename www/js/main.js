@@ -145,7 +145,8 @@ function register()
                            window.localStorage.setItem("isActivated","true") ;     
                            userpass=prompt("Ingrese la clave del dispositivo GPS, si la desconoce deje este campo en blanco");
                            if (userpass==""){userpass="123456"};
-                           window.localStorage.setItem("userpass",userpass);                  
+                           window.localStorage.setItem("userpass",userpass);             
+                             
                             $(":mobile-pagecontainer").pagecontainer( "change", $("#welcome" ));
                             break;
                         case "1":
@@ -187,16 +188,18 @@ function doMenu(val)
 
             }
             break; 
-        case 3:
+        case 5:
             smstring="arm"+userpass
             if (send_command(smstring)){
             alert("sms enviado");
         }
             break;
         case 4:
-            
-            break;
-        case 5:
+             smstring="nomove"+userpass;
+            if(send_command(smsstring)){alert("sms enviado");};
+            break;  
+          
+        case 3:
             smstring="move"+userpass+" 0200";
             if(send_command(smsstring)){alert("sms enviado");};
             break;  
@@ -212,7 +215,11 @@ function doMenu(val)
                 }
             break;
         case 7:
-            
+            smstring="disarm"+userpass
+            if (send_command(smstring)){
+            alert("sms enviado");
+        }
+            break;
     
         default:
             break;
@@ -276,28 +283,19 @@ function doConfigAppMenu()
 
 }
 
-function send_traccar_command(command)
+function traccar_get_pos(command)
 {
-           $.ajax({
-        url: traccar_server+"/api/commands",
-        dataType: "json",
-        contentType: "application/json",
-        type: "POST",
-        data: JSON.stringify({
-            deviceId:traccar_deviceID ,
-            type: "custom",
-            attributes: {
-                data: "*000000,801#"
-            },
-            id: -1
-        }),
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader ("Authorization", "Basic " + btoa(traccar_username + ":" + traccar_password));
-        },
-        success: function(res){
-            console.log(res);
-        }
-    });
+          $.ajax({
+    type: 'get',
+    url: traccar_server+'/api/devices/',
+    headers: {
+        "Authorization": "Basic " + btoa(traccar_username + ":" + traccar_password)
+    },
+    success: function (response) {
+        return response;
+    }
+});
+return null
 }
 function doConfigMenu(command)
 {
