@@ -188,14 +188,17 @@ function doMenu(val)
             }
             break; 
         case 3:
-            
+            smstring="arm"+userpass
+            if (send_command(smstring)){
+            alert("sms enviado");
+        }
             break;
         case 4:
             
             break;
         case 5:
             smstring="move"+userpass+" 0200";
-            if(send_command(smsstring)){alert("sms enviado")};
+            if(send_command(smsstring)){alert("sms enviado");};
             break;  
         case 6:
             if (navigator.app) {
@@ -316,6 +319,7 @@ function doConfigMenu(command)
             break;
         case 1:
             var newadmingps=prompt("ingrese el numero que desea autorizar");
+
             if(isNumeric(newadmingps)&(newadmingps.length>5))
             {
                 var smsstring="admin"+userpass+" "+ newadmingps;
@@ -328,11 +332,20 @@ function doConfigMenu(command)
         case 2:
             var apn=prompt("ingrese el APN de su proveedor de servicios");
             var smsstring="APN"+userpass+" "+ apn;
+            if (apn==null){
+                    break;
+
+            }
             send_command(smsstring);
             
             break;
         case 3:
-            var smsstring="adminip"+userpass+" "+web_app_server+" "+prompt("ingrese el numero de puerto");
+            var temppuerto=prompt("ingrese el numero de puerto");
+            var smsstring="adminip"+userpass+" "+web_app_server+" "+temppuerto;
+            if (temppuerto==null){
+                    break;
+
+            }
             send_command(smsstring);
             
             break;
