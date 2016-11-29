@@ -387,7 +387,7 @@ function doTraccarPage()
       if (null==document.getElementById(element.name+"-btn"))
       {
           var stringname=element.id;
-          divmapbotones.innerHTML=divmapbotones.innerHTML+"<a href='javascript:doGpsSelector("+stringname+ ")'><button id=" +element.name+"-btn" +">"+element.name+"</button></a>";
+          divmapbotones.innerHTML=divmapbotones.innerHTML+"<a style='text-decoration:none' href='javascript:doGpsSelector("+stringname+ ")'><button id=" +element.name+"-btn" +">"+element.name+"</button></a>";
 
       }
 
