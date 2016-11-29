@@ -16,12 +16,13 @@ var traccar_session=null;
 var smsplugin=null;
 var map;
 var traccar_devices=null;
+var traccar_lastest_postitions=null;
 function initMap()
 {
      map = new google.maps.Map(document.getElementById('map'), {
                  center: {lat: -34.397, lng: 150.644},
                  scrollwheel: false,
-                 zoom: 8
+                 zoom: 14
         });
 }
 document.addEventListener("deviceready",main, false);   
@@ -90,16 +91,8 @@ function main()
     /*-- activar el plugin de SMS --*/
 
                 // Create a map object and specify the DOM element for display.
-                 map = new google.maps.Map(document.getElementById('map'), {
-                 center: {lat: -34.397, lng: 150.644},
-                 scrollwheel: false,
-                 zoom: 8
-        });
-  
-    smsplugin = cordova.require("info.asankan.phonegap.smsplugin.smsplugin");
-    if (smsplugin==null){
-        alert("Error la aplicacion se cerrara");
-    }
+              
+   
     numero_de_gps=window.localStorage.getItem("numero_de_gps");
     if(numero_de_gps.length>5)
     {
@@ -290,6 +283,7 @@ function traccar_get_devices_list(command)
 {
     
     $.ajax({
+    async:false,    
     type: 'get',
     url: traccar_server+'/api/devices/',
     headers: {
@@ -302,6 +296,23 @@ function traccar_get_devices_list(command)
     }
 });
 
+}
+
+function traccar_get_devices_lastestPosition(tdevices)
+{
+    $.ajax({
+    async:false,    
+    type: 'get',
+    url: traccar_server+'/api/positions/',
+    headers: {
+        "Authorization": "Basic " + btoa(traccar_username + ":" + traccar_password)
+    },
+    success: function (response) {
+        console.log(response);
+        traccar_lastest_postitions=response;
+        return traccar_lastest_postitions;
+    }
+});
 }
 function doConfigMenu(command)
 {
@@ -375,10 +386,39 @@ function doTraccarPage()
   traccar_devices.forEach(function(element,index) {
       if (null==document.getElementById(element.name+"-btn"))
       {
-          divmapbotones.innerHTML=divmapbotones.innerHTML+"<a href='javascript:doGpsSelector("+element.name+ ")'><button id=" +element.name+"-btn" +">"+element.name+"</button></a>";
+          var stringname=element.id;
+          divmapbotones.innerHTML=divmapbotones.innerHTML+"<a href='javascript:doGpsSelector("+stringname+ ")'><button id=" +element.name+"-btn" +">"+element.name+"</button></a>";
 
       }
 
   });
+
+}
+
+function doGpsSelector(command)
+{
+    traccar_get_devices_list();
+    traccar_get_devices_lastestPosition();
+    traccar_lastest_postitions.forEach(function(element,index) {
+        if (element.deviceId==command)     
+        {
+        
+            alert ("direccion"+element.address);
+            traccar_devices.forEach(function(element2,index) {
+                    
+                    if (element2.id==element.deviceId)
+                            {
+                                var myLatLng = {lat:element.latitude, lng: element.longitude};
+                                map.setCenter(myLatLng);
+                                var marker = new google.maps.Marker({
+                                map: map,
+                                position: myLatLng,
+                                title: element2.name
+                                });
+                            }
+                        })
+        }  
+    });
+
 
 }
